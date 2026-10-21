@@ -16,37 +16,34 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header wrap">
       <a class="wordmark" href="/" aria-label="Shelterbelt home"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="/icon.svg#wheat"/></svg>Shelterbelt</a>
-      <nav aria-label="Main navigation"><a href="#farm">The farm</a><a href="#grain-bin" data-farm-select>Grain Bin <span aria-hidden="true">↓</span></a></nav>
+      <nav aria-label="Main navigation"><a href="#farm">The farm</a><a href="https://grainbin.shelterbelt.xyz">Grain Bin <span aria-hidden="true">↗</span></a></nav>
     </header>
     <main id="main" tabindex="-1">
       <section class="arrival wrap" aria-labelledby="arrival-title">
-        <div><p class="eyebrow">An independent software workshop</p><h1 id="arrival-title">Build useful<br><em>things.</em></h1></div>
-        <div class="arrival-introduction"><p>Small tools for subjects worth understanding. Built by Thomas Pflipsen, one experiment at a time.</p><a class="text-link" href="#farm">Explore the farm <span aria-hidden="true">↓</span></a></div>
+        <div><p class="eyebrow">An independent software workshop</p><h1 id="arrival-title">Build useful <em>things.</em></h1></div>
       </section>
       <section id="farm" class="farm" data-farm data-camera-x="-10" data-camera-y="-5" data-camera-scale="1.35" aria-labelledby="farm-title">
         <div class="farm-stage">
           <div class="farm-window">
             <div class="farm-camera">
               <img class="farm-art" src="/assets/farm.webp" width="1536" height="1024" fetchpriority="high" alt="An illustrated North Dakota-inspired farmstead: flat grain fields, long shelterbelt rows, a gravel lane, a modest farmhouse, and a corrugated metal grain bin.">
-              <a class="farm-hotspot" style="--destination-x: 65%; --destination-y: 58%" href="#grain-bin" data-farm-select aria-label="Explore Grain Bin, experiment 001"><span class="destination-label"><span class="destination-dot" aria-hidden="true"></span>001 / Grain Bin <span aria-hidden="true">↓</span></span></a>
+              <button class="farm-hotspot" style="--destination-x: 65%; --destination-y: 58%" type="button" popovertarget="grain-bin" aria-haspopup="dialog" aria-label="Show Grain Bin details, experiment 001"><span class="destination-label"><span class="destination-dot" aria-hidden="true"></span>001 / Grain Bin <span aria-hidden="true">+</span></span></button>
             </div>
             <div class="scene-heading"><p class="eyebrow">A place for the work</p><h2 id="farm-title">Explore Shelterbelt.</h2></div>
-            <a class="scene-shortcut" href="#grain-bin" data-farm-select>Go to Grain Bin <span aria-hidden="true">↓</span></a>
+            <div id="grain-bin" class="project-card" popover role="dialog" aria-labelledby="grain-bin-title">
+              <button class="card-close" type="button" popovertarget="grain-bin" popovertargetaction="hide" aria-label="Close Grain Bin details" autofocus><span aria-hidden="true">×</span></button>
+              <p class="eyebrow">Experiment 001</p>
+              <h2 id="grain-bin-title">Grain Bin</h2>
+              <p class="project-subtitle">Notes on a New Kind of Money.</p>
+              <p class="project-description">Explore stablecoin supply, concentration, and market structure using public data.</p>
+              <a class="button" href="https://grainbin.shelterbelt.xyz">Open Grain Bin <span aria-hidden="true">↗</span></a>
+              <a class="card-source" href="https://github.com/Pflipto/grain-bin">View the code <span aria-hidden="true">↗</span></a>
+            </div>
+            <a class="farm-fallback" href="https://grainbin.shelterbelt.xyz">Open Grain Bin <span aria-hidden="true">↗</span></a>
           </div>
           <div class="scene-caption"><p>North Dakota, interpreted.</p><p>Select the grain bin to explore Experiment 001.</p></div>
         </div>
       </section>
-      <article id="grain-bin" class="project-panel wrap" tabindex="-1" aria-labelledby="grain-bin-title">
-        <div class="project-copy">
-          <p class="eyebrow">Experiment 001 <span class="live-label"><span aria-hidden="true">●</span> Live</span></p>
-          <h2 id="grain-bin-title">Grain Bin</h2>
-          <p class="project-subtitle">Notes on a New Kind of Money.</p>
-          <p class="project-description">A tool for exploring stablecoin supply, concentration, and market structure using public data. Follow the numbers over time, see where supply gathers, and understand how the figures are counted.</p>
-          <div class="project-links"><a class="button" href="https://grainbin.shelterbelt.xyz">Open Grain Bin <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/Pflipto/grain-bin">View the code <span aria-hidden="true">↗</span></a></div>
-          <a class="return-link text-link" href="#farm" data-farm-reset><span aria-hidden="true">↑</span> Back to the farm</a>
-        </div>
-        <figure class="product-preview"><a href="https://grainbin.shelterbelt.xyz" aria-label="Open Grain Bin’s stablecoin dashboard"><img src="/assets/grain-bin.jpg" width="1180" height="559" loading="lazy" alt="Grain Bin’s one-year chart of USD-pegged circulating value, with dates and the latest snapshot value."></a><figcaption>From the application. Figures shown are a snapshot.</figcaption></figure>
-      </article>
     </main>
     <footer class="site-footer wrap">
       <div class="footer-identity"><a class="wordmark" href="/" aria-label="Shelterbelt home"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><use href="/icon.svg#wheat"/></svg>Shelterbelt</a><p>Build useful things.</p></div>
