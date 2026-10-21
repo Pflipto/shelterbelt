@@ -23,7 +23,7 @@ Open the local server in your browser. Edit `index.html` and `styles.css`, then 
 
 `assets/grain-bin.jpg` is an unaltered Chromium screenshot of Grain Bin’s local
 production build at commit `30f2baeabfde818d03eeac9e91bff96bbd5d6947`, using real
-DefiLlama data, captured October 21, 2026 at a 1280 × 1080 viewport. It is a
+DefiLlama data, captured October 21, 2026 from its actual historical-supply section at 1180 × 559 pixels. It is a
 static illustration of the interface, not a live market quote. The homepage
 caption makes this distinction explicit; both product links lead to the live
 custom domain, verified during the design pass.
@@ -32,7 +32,7 @@ When refreshing the image, capture the running application with its real data
 and replace the screenshot; do not recreate the interface or edit its metrics.
 
 The page uses one main landmark and a sequential heading structure. Supporting
-copy is 16–18px, the footer introduction is 15px, and secondary captions and
+body copy is 16px, the footer introduction is 15px, and secondary captions and
 metadata are 12–14px. Keyboard focus is visible, link targets have comfortable
 hit areas, and reduced-motion preferences turn off smooth scrolling. Check both
 the bundled fonts and their fallbacks when changing the layout.
