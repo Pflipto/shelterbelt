@@ -33,6 +33,25 @@ function enhanceFarm() {
   let visible = true;
   let frame = 0;
 
+  function positionProjectCard() {
+    if (typeof project.showPopover !== "function" || !project.matches(":popover-open")) return;
+    const bounds = farm.getBoundingClientRect();
+    if (bounds.bottom <= 0 || bounds.top >= innerHeight) {
+      project.hidePopover();
+      return;
+    }
+    const anchor = hotspot.getBoundingClientRect();
+    const card = project.getBoundingClientRect();
+    const margin = 16;
+    const gap = 20;
+    const preferredLeft = anchor.left - card.width - gap;
+    const left = preferredLeft >= margin ? preferredLeft : anchor.right + gap;
+    const top = anchor.top + (anchor.height - card.height) / 2;
+    project.classList.add("is-positioned");
+    project.style.left = `${clamp(left, margin, Math.max(margin, innerWidth - card.width - margin))}px`;
+    project.style.top = `${clamp(top, margin, Math.max(margin, innerHeight - card.height - margin))}px`;
+  }
+
   function paint() {
     frame = 0;
     const travel = Math.max(0, farm.offsetHeight - stage.offsetHeight);
@@ -42,6 +61,7 @@ function enhanceFarm() {
     camera.style.setProperty("--camera-x", `${value.x.toFixed(3)}%`);
     camera.style.setProperty("--camera-y", `${value.y.toFixed(3)}%`);
     camera.style.setProperty("--camera-scale", value.scale.toFixed(4));
+    positionProjectCard();
   }
 
   function schedulePaint() {
@@ -61,9 +81,12 @@ function enhanceFarm() {
     new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (visible) refresh();
-      else if (frame) {
-        cancelAnimationFrame(frame);
-        frame = 0;
+      else {
+        if (frame) {
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
+        if (typeof project.hidePopover === "function" && project.matches(":popover-open")) project.hidePopover();
       }
     }, { rootMargin: "200px 0px" }).observe(farm);
   }
@@ -72,31 +95,17 @@ function enhanceFarm() {
   reducedMotion.addEventListener("change", refresh);
   smallScreen.addEventListener("change", refresh);
 
-  const behavior = () => reducedMotion.matches ? "instant" : "smooth";
-  function setHash(hash) {
-    if (location.hash !== hash) history.pushState(null, "", hash);
-  }
-
-  document.addEventListener("click", event => {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const link = event.target instanceof Element ? event.target.closest("a[data-farm-select]") : null;
-    if (!link || link.getAttribute("href") !== "#grain-bin") return;
-    event.preventDefault();
-    setHash("#grain-bin");
-    project.focus({ preventScroll: true });
-    project.scrollIntoView({ behavior: behavior(), block: "start" });
+  // Native popovers provide click-away/Escape dismissal, focus restoration,
+  // and a working click interaction even when JavaScript is disabled.
+  project.addEventListener("toggle", event => {
+    if (event.newState === "open") refresh();
+    else {
+      project.classList.remove("is-positioned");
+      project.style.removeProperty("left");
+      project.style.removeProperty("top");
+    }
   });
 
-  document.querySelectorAll("[data-farm-reset]").forEach(control => {
-    control.addEventListener("click", event => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      if (control instanceof HTMLAnchorElement && control.getAttribute("href") !== "#farm") return;
-      event.preventDefault();
-      setHash("#farm");
-      hotspot.focus({ preventScroll: true });
-      farm.scrollIntoView({ behavior: behavior(), block: "start" });
-    });
-  });
 }
 
 if (typeof document !== "undefined") enhanceFarm();
