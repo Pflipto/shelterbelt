@@ -34,7 +34,7 @@ h1 em { color: #80552e; font-weight: 400; }
 .text-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 44px; font-size: 14px; font-weight: 500; }
 
 /* The art and destination share one coordinate space. No layers are independently distorted. */
-.farm { --farm-height: calc(100svh - 49px); position: relative; scroll-margin-top: 0; }
+.farm { --farm-height: 100svh; position: relative; scroll-margin-top: 0; }
 .farm-stage { position: relative; width: 100%; }
 .farm-window { height: var(--farm-height); position: relative; overflow: hidden; background: #aaa584; isolation: isolate; }
 .farm-camera {
@@ -60,8 +60,6 @@ h1 em { color: #80552e; font-weight: 400; }
 .scene-heading .eyebrow { margin-bottom: 6px; font-size: 11px; }
 .scene-heading h2 { font-size: 28px; letter-spacing: -.02em; }
 .farm-fallback { display: none; }
-.scene-caption { display: flex; justify-content: space-between; gap: 24px; padding: 15px max(36px, calc((100% - 1200px) / 2)); background: var(--sb-canvas); border-bottom: 1px solid var(--sb-line); }
-.scene-caption p { color: var(--sb-muted); font-size: 12px; line-height: 1.5; margin: 0; }
 .project-card { position: fixed; inset: 0; margin: auto; width: 350px; max-width: calc(100vw - 32px); height: fit-content; max-height: calc(100svh - 32px); overflow: auto; padding: 28px; border: 1px solid var(--sb-line); background: var(--sb-paper); color: var(--sb-silo); box-shadow: 0 12px 48px rgb(23 28 23 / .2); }
 .project-card.is-positioned { inset: auto; margin: 0; }
 .project-card::backdrop { background: transparent; }
@@ -82,6 +80,8 @@ h1 em { color: #80552e; font-weight: 400; }
 .footer-identity .wordmark { font-size: 12px; }
 .footer-identity .mark { width: 24px; height: 24px; }
 .footer-identity p { font: italic 24px/1.4 var(--sb-font-display); margin: 10px 0 0 34px; }
+.footer-identity .footer-coordinates { color: var(--sb-muted); font: 400 12px/1.8 var(--sb-font-ui); font-variant-numeric: tabular-nums; letter-spacing: .08em; margin-top: 20px; }
+.footer-coordinates span { margin-inline: 7px; }
 .footer-about { color: var(--sb-muted); font-size: 15px; line-height: 1.75; max-width: 56ch; margin-bottom: 16px; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 4px 25px; }
 .footer-links a { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; font-size: 14px; }
@@ -109,7 +109,6 @@ h1 em { color: #80552e; font-weight: 400; }
   .scene-heading { top: 20px; left: 20px; padding: 13px 16px; }
   .scene-heading .eyebrow { display: none; }
   .scene-heading h2 { font-size: 24px; }
-  .scene-caption { flex-direction: column; gap: 5px; padding: 14px 20px; }
   .site-footer { grid-template-columns: 1fr; gap: 26px; }
 }
 @media (max-width: 380px) {
