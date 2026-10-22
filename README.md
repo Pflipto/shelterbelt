@@ -25,6 +25,8 @@ Inter and Newsreader are served locally in WOFF2 format. Their original TTF file
 - The browser’s Popover API handles opening, dismissal, and keyboard behavior without JavaScript. For the card, `farm.js` only positions it beside the bin, keeps it inside the viewport, and updates its position during camera movement or resizing. Without JavaScript the same card opens centered. Browsers without native popover support get a direct app link instead.
 - The project card stays outside the transformed camera, in the browser’s top layer. Future destinations can use their own coordinate-based controls and project cards. Adding another building will require an artwork update; there is no procedural environment or speculative second project.
 
+Mobile navigation keeps the wordmark and direct Grain Bin link on one row. The footer places the identity and social links side by side, with the full story in a native “Why Shelterbelt?” disclosure below. The story is expanded on desktop; without JavaScript it remains readable and can still be collapsed using the native control.
+
 ## Validation
 
 Optional camera unit tests use Node.js 24, without installing packages:
