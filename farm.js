@@ -108,4 +108,17 @@ function enhanceFarm() {
 
 }
 
-if (typeof document !== "undefined") enhanceFarm();
+function enhanceFooter() {
+  const story = document.querySelector(".footer-story");
+  if (!story) return;
+  const mobile = matchMedia("(max-width: 760px)");
+  // A compact mobile disclosure; desktop and no-JS browsing keep the story readable.
+  const syncLayout = () => { story.open = !mobile.matches; };
+  syncLayout();
+  mobile.addEventListener("change", syncLayout);
+}
+
+if (typeof document !== "undefined") {
+  enhanceFooter();
+  enhanceFarm();
+}
