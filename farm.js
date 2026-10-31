@@ -19,9 +19,11 @@ function enhanceFarm() {
   const farm = document.querySelector("[data-farm]");
   const stage = farm?.querySelector(".farm-stage");
   const camera = farm?.querySelector(".farm-camera");
-  const project = document.getElementById("grain-bin");
-  const hotspot = farm?.querySelector(".farm-hotspot");
-  if (!farm || !stage || !camera || !project || !hotspot) return;
+  const destinations = Array.from(farm?.querySelectorAll(".farm-hotspot[popovertarget]") ?? [], hotspot => ({
+    hotspot,
+    project: document.getElementById(hotspot.getAttribute("popovertarget")),
+  })).filter(({ project }) => project);
+  if (!farm || !stage || !camera || !destinations.length) return;
 
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const smallScreen = matchMedia("(max-width: 760px)");
@@ -33,7 +35,7 @@ function enhanceFarm() {
   let visible = true;
   let frame = 0;
 
-  function positionProjectCard() {
+  function positionProjectCard({ hotspot, project }) {
     if (typeof project.showPopover !== "function" || !project.matches(":popover-open")) return;
     const bounds = farm.getBoundingClientRect();
     if (bounds.bottom <= 0 || bounds.top >= innerHeight) {
@@ -61,7 +63,7 @@ function enhanceFarm() {
     camera.style.setProperty("--camera-x", `${value.x.toFixed(3)}%`);
     camera.style.setProperty("--camera-y", `${value.y.toFixed(3)}%`);
     camera.style.setProperty("--camera-scale", value.scale.toFixed(4));
-    positionProjectCard();
+    destinations.forEach(positionProjectCard);
   }
 
   function schedulePaint() {
@@ -73,7 +75,7 @@ function enhanceFarm() {
     paint();
   }
 
-  // The scene and its hotspot share one transform, keeping their coordinates aligned.
+  // The scene and its hotspots share one transform, keeping their coordinates aligned.
   document.documentElement.classList.add("farm-enhanced");
   refresh();
 
@@ -86,7 +88,9 @@ function enhanceFarm() {
           cancelAnimationFrame(frame);
           frame = 0;
         }
-        if (typeof project.hidePopover === "function" && project.matches(":popover-open")) project.hidePopover();
+        for (const { project } of destinations) {
+          if (typeof project.hidePopover === "function" && project.matches(":popover-open")) project.hidePopover();
+        }
       }
     }, { rootMargin: "200px 0px" }).observe(farm);
   }
@@ -97,7 +101,7 @@ function enhanceFarm() {
 
   // Native popovers provide click-away/Escape dismissal, focus restoration,
   // and a working click interaction even when JavaScript is disabled.
-  project.addEventListener("toggle", event => {
+  for (const { project } of destinations) project.addEventListener("toggle", event => {
     if (event.newState === "open") refresh();
     else {
       project.classList.remove("is-positioned");

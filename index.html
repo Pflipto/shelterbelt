@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f2ebdd">
-    <meta name="description" content="Shelterbelt is Thomas Pflipsen’s independent software workshop. Explore the farm and discover Grain Bin, a tool for understanding stablecoins.">
+    <meta name="description" content="Shelterbelt is Thomas Pflipsen’s independent software workshop. Explore the farm and discover Grain Bin for data exploration and Silo Works for drawing processes and systems.">
     <title>Shelterbelt — Build useful things.</title>
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="preload" href="/assets/farm.webp" as="image" type="image/webp">
@@ -25,8 +25,9 @@
         <div class="farm-stage">
           <div class="farm-window">
             <div class="farm-camera">
-              <img class="farm-art" src="/assets/farm.webp" width="1536" height="1024" fetchpriority="high" alt="An illustrated North Dakota-inspired farmstead: flat grain fields, long shelterbelt rows, a gravel lane, a modest farmhouse, and a corrugated metal grain bin.">
+              <img class="farm-art" src="/assets/farm.webp" width="1536" height="1024" fetchpriority="high" alt="An illustrated North Dakota-inspired farmstead: flat grain fields, long shelterbelt rows, a gravel lane, a modest farmhouse, a corrugated metal grain bin, and a small, low-profile former missile-silo site farther out in the field.">
               <button class="farm-hotspot" style="--destination-x: 65%; --destination-y: 58%" type="button" popovertarget="grain-bin" aria-haspopup="dialog" aria-label="Show Grain Bin details, experiment 001"><span class="destination-label"><span class="destination-dot" aria-hidden="true"></span>001 / Grain Bin <span aria-hidden="true">+</span></span></button>
+              <button class="farm-hotspot farm-hotspot--silo" style="--destination-x: 85.5%; --destination-y: 34%" type="button" popovertarget="silo-works" aria-haspopup="dialog" aria-label="Show Silo Works details, experiment 002"><span class="destination-label"><span class="destination-dot" aria-hidden="true"></span>002 / Silo Works <span aria-hidden="true">+</span></span></button>
             </div>
             <div class="scene-heading"><p class="eyebrow">A place for the work</p><h2 id="farm-title">Explore Shelterbelt.</h2></div>
             <div id="grain-bin" class="project-card" popover role="dialog" aria-labelledby="grain-bin-title">
@@ -38,7 +39,19 @@
               <a class="button" href="https://grainbin.shelterbelt.xyz">Open Grain Bin <span aria-hidden="true">↗</span></a>
               <a class="card-source" href="https://github.com/Pflipto/grain-bin">View the code <span aria-hidden="true">↗</span></a>
             </div>
-            <a class="farm-fallback" href="https://grainbin.shelterbelt.xyz">Open Grain Bin <span aria-hidden="true">↗</span></a>
+            <div id="silo-works" class="project-card" popover role="dialog" aria-labelledby="silo-works-title">
+              <button class="card-close" type="button" popovertarget="silo-works" popovertargetaction="hide" aria-label="Close Silo Works details" autofocus><span aria-hidden="true">×</span></button>
+              <p class="eyebrow">Experiment 002</p>
+              <h2 id="silo-works-title">Silo Works</h2>
+              <p class="project-subtitle">Might as well draw it out.</p>
+              <p class="project-description">Sketch a process, connect a few systems, and make an idea easier to explain. A simple diagram editor that keeps your work in your browser.</p>
+              <a class="button" href="https://silo.shelterbelt.xyz">Open Silo Works <span aria-hidden="true">↗</span></a>
+              <a class="card-source" href="https://github.com/Pflipto/Silo-Works">View the code <span aria-hidden="true">↗</span></a>
+            </div>
+            <nav class="farm-fallback" aria-label="Farm projects">
+              <a href="https://grainbin.shelterbelt.xyz">Open Grain Bin <span aria-hidden="true">↗</span></a>
+              <a href="https://silo.shelterbelt.xyz">Open Silo Works <span aria-hidden="true">↗</span></a>
+            </nav>
           </div>
         </div>
       </section>
