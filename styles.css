@@ -54,6 +54,7 @@ h1 em { color: #80552e; font-weight: 400; }
 .farm-enhanced .farm-stage { position: sticky; top: 0; }
 .farm-enhanced .farm-camera { will-change: transform; }
 .farm-hotspot { position: absolute; left: var(--destination-x, 65%); top: var(--destination-y, 58%); width: 14%; height: 22%; min-width: 52px; min-height: 64px; transform: translate(-50%, -50%); text-decoration: none; border: 0; padding: 0; background: transparent; font-family: inherit; cursor: pointer; border-radius: 45% 45% 18% 18%; }
+.farm-hotspot--silo { width: 16%; height: 10%; min-height: 44px; border-radius: 50%; }
 .farm-hotspot:hover, .farm-hotspot:focus-visible { outline: 3px solid var(--sb-paper); outline-offset: 5px; background: rgb(250 247 240 / .08); }
 .destination-label { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; white-space: nowrap; background: var(--sb-paper); color: var(--sb-silo); padding: 12px 14px; font-size: 12px; font-weight: 600; border: 1px solid rgb(23 28 23 / .2); box-shadow: 0 3px 14px rgb(23 28 23 / .12); }
 .destination-label::before { content: ""; position: absolute; bottom: 100%; left: 50%; width: 1px; height: 18px; background: var(--sb-paper); }
@@ -77,7 +78,8 @@ h1 em { color: #80552e; font-weight: 400; }
 .card-source { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 8px; font-size: 13px; }
 @supports not selector(:popover-open) {
   .farm-hotspot, .project-card { display: none; }
-  .farm-fallback { display: flex; position: absolute; right: 20px; bottom: 20px; gap: 20px; padding: 15px 18px; background: var(--sb-paper); font-size: 14px; }
+  .farm-fallback a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; }
+  .farm-fallback { display: flex; position: absolute; right: 20px; bottom: 20px; gap: 12px; flex-wrap: wrap; max-width: calc(100% - 40px); padding: 10px 16px; background: var(--sb-paper); font-size: 14px; }
 }
 .site-footer { display: grid; grid-template-columns: minmax(180px, .8fr) minmax(0, 1.6fr); column-gap: clamp(32px, 4vw, 64px); row-gap: 0; align-items: start; padding-block: 30px 38px; margin-top: 32px; border-top: 1px solid var(--sb-line); }
 .footer-identity { grid-column: 1; grid-row: 1; }
@@ -112,13 +114,16 @@ h1 em { color: #80552e; font-weight: 400; }
   .site-header h1 { margin-top: 24px; }
   h1 { font-size: clamp(54px, 11vw, 80px); }
   .farm { --farm-height: 440px; }
-  .farm-camera { left: 45%; }
+  /* Keep the distant silo and grain bin in view across narrow screen widths. */
+  .farm-camera { left: auto; right: 16px; transform: translate(calc(6% + var(--camera-x)), calc(-50% + var(--camera-y))) scale(var(--camera-scale)); }
+  .farm-hotspot--silo .destination-label { top: auto; bottom: calc(100% + 12px); left: auto; right: 50%; transform: none; }
+  .farm-hotspot--silo .destination-label::before { top: 100%; bottom: auto; left: auto; right: 0; }
   .farm-enhanced .farm { min-height: 0; }
   .farm-enhanced .farm-stage { position: relative; }
   .farm-enhanced .farm-camera { will-change: auto; }
-  .scene-heading { top: 20px; left: 20px; padding: 13px 16px; }
+  .scene-heading { top: 16px; left: 20px; padding: 10px 14px; }
   .scene-heading .eyebrow { display: none; }
-  .scene-heading h2 { font-size: 24px; }
+  .scene-heading h2 { font-size: 22px; }
   .site-footer { grid-template-columns: minmax(0, 1fr) auto; column-gap: 20px; row-gap: 20px; align-items: start; margin-top: 24px; padding-block: 28px calc(28px + env(safe-area-inset-bottom, 0px)); }
   .footer-identity { grid-column: 1; grid-row: 1; min-width: 0; }
   .footer-identity .wordmark { min-height: 44px; font-size: 13px; }
